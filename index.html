@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            box-sizing: border-box;
+        }
+        .page {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+        .menu-button {
+            width: 150px;
+            height: 75px;
+            text-transform: uppercase;
+        }
+        .menu-container {
+            background-color: aqua;
+            width: fit-content;
+            padding: 20px;
+            height: 100%;
+        }
+        .child-container {
+            display: flex;
+        }
+        .child {
+            width: 0;
+            background-color: red;
+            margin-left: 10px;
+            transition: width 1s;
+        }
+        .visible {
+            width: 300px;
+            height: 100px;
+        }
+        .child-container:not(:first-child) {
+            margin-top: 10px;
+        }
+        .icon {
+            width: 150px;
+            height: 100px;
+            background-color: blue;
+        }
+        .content-container {
+            background-color: orange;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="menu-container">
+            <button class="menu-button">
+                hide menu
+            </button>
+            <div class="child-container">
+                <div class="icon"></div>
+                <div class="child visible"></div>
+            </div>
+            <div class="child-container">
+                <div class="icon"></div>
+                <div class="child visible"></div>
+            </div>
+            <div class="child-container">
+                <div class="icon"></div>
+                <div class="child visible"></div>
+            </div>
+            <div class="child-container">
+                <div class="icon"></div>
+                <div class="child visible"></div>
+            </div>
+            <div class="child-container">
+                <div class="icon"></div>
+                <div class="child visible"></div>
+            </div>
+        </div>
+        <div class="content-container"></div>
+</div>
+    
+    <script async>
+        let isMenuOpened = true
+        const button = document.querySelector('button')
+        const children = document.querySelectorAll('.child')
+        button.addEventListener('click', () => {
+            isMenuOpened=!isMenuOpened
+            button.innerText = `${isMenuOpened ? "hide" : "show"} menu`
+            if(isMenuOpened) {
+                children.forEach(child => {
+                    child.classList.add('visible')
+                })
+            } else {
+                children.forEach(child => {
+                    child.classList.remove('visible')
+                })
+            }
+        })
+    </script>
+
+</body>
+</html>
